@@ -14,15 +14,8 @@ import java.util.Scanner;
  */
 public class AtmView {
     Scanner myObj = new Scanner(System.in);
-    private static AtmView view = new AtmView();
     Tampilan object = Tampilan.getInstance();
-    
-    public AtmView(){   
-    }
-    
-    public static AtmView getInstance(){   
-        return view;
-    }
+
     
     public int mainMenu(){
         object.displayPesanBaris("Program ATM - MVC, DAO, Singleton");
