@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>DATABASE</title> 
+    </h:head>
+    <style>
+        table {  
+            border-collapse: collapse;  
+            width: 100%;  
+        }  
+        th, td {  
+            text-align: center;    
+            padding: 8px;  
+            font-family: sans-serif;
+        }
+        .btn{
+            border: none;
+            padding: 10px;
+            border-radius: 5px
+        }
+        .btn-primary{
+            background-color: lightsalmon;
+            
+        }
+        .btn-danger{
+            background-color: red;
+            color: white;
+        }
+        
+  
+tr:nth-child(even){background-color:#f2f2f2 }  
+th {  
+background-color: #5EDCFF;  
+color: white;  
+} 
+h1{
+            font-family: sans-serif;
+        }
+    </style>
+    <h:body>
+        <br></br><br></br><center><h1>DAFTAR PRODUK</h1></center><br></br><br></br>
+    <h:form>
+            <table>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Nama
+                    </th>
+                    <th>
+                        Harga
+                    </th>
+                    <th>
+                        Keterangan
+                    </th>
+                    <th>
+                        ADD
+                    </th>
+                    
+                   
+                </tr>
+            <c:forEach var="item" items="${data.list}">
+                <tr>
+                    <td>
+                        <h:outputText value="${item.id_produk}"/>
+                    </td>
+                                       <td>
+                        <h:outputText value="${item.nama}"/>
+                    </td>
+                    <td>
+                        <h:outputText value="${item.harga}"/>
+                    </td>
+                    <td>
+                        <h:outputText value="${item.ket}"/>
+                    </td>
+                    <td>
+                        <h:commandButton
+                             style="border-radius: 5px; width: 100px; text-align: center;"
+                             action="#{trans.doTransaksi(item.id_produk)}"
+                             value="Add"
+                             /> 
+                    </td>
+                </tr>
+            </c:forEach>
+                
+            </table>
+            
+            <h:outputText value="#{data.mdl}"/>  
+            <br></br>
+            <br></br>
+            
+            <h1 align="center">CHECKOUT MENU</h1>
+            
+            <table>
+            <tr>
+                <th>Nama Pelanggan</th>
+                <th>No Transaksi</th>
+                <th>Nama Barang</th>
+                <th>Kuantitas</th>
+                <th>Input</th> 
+                <th>Status Transaksi</th>
+            </tr>
+                <tr>
+                    <td><h:inputText value="#{trans.nama_pel}"/></td>
+                    <td><h:inputText value="#{trans.no_trans}"/></td>
+                    <td><h:outputText value="#{trans.barang}"/></td>
+                    <td><h:inputText value="#{trans.qty}"/></td>
+                    <td><h:commandButton value="Input" actionListener="#{trans.doTransaksio()}"/></td>
+                    <td><h:outputText value="#{trans.notif}"/></td>
+                </tr>
+                <tr>
+                    <td>Total</td>
+                    <td><h:outputText value="#{trans.total}"/><br/></td>
+                </tr>
+                <br></br>
+                <tr>
+                    <th>Bayar</th>
+                    <th><h:inputText value="#{trans.bayar}"/></th>
+                    <th><h:commandButton value="Bayar" action="#{trans.Kembalian()}"/></th>
+                </tr>
+                <tr>
+                    <td>Kembalian</td>
+                    <td><h:outputText value="#{trans.kembalian}"/></td>
+                </tr>
+                <tr>
+       
+                    <td><h:commandButton value="Menu" action="index"/></td>
+                    
+                </tr>
+                </table>
+                </h:form>
+    </h:body>
+</html>

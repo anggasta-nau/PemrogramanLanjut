@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="Kasir">
+    <resultMap id="result" type="Kasir">
+        <result property="id_produk" column="ID_PRODUK"/>
+    </resultMap>
+    <select id="getAll" resultMap="result">
+        SELECT * FROM produk;
+    </select>
+    <select id="getById" parameterType="int" resultMap="result">
+        SELECT * FROM produk WHERE id_produk= #{id_produk};
+    </select>
+    
+    <insert id="insert" parameterType="Kasir">
+        INSERT INTO produk (id_produk,nama,harga,ket,sts) VALUES(#{id_produk},#{nama},#{harga},#{ket},#{sts});
+        <selectKey keyProperty="id_produk" resultType="int" order = "AFTER">
+           SELECT LAST_INSERT_ID()AS id_produk 
+        </selectKey>
+    </insert>
+    
+    <update id="update" parameterType="Kasir">
+        UPDATE produk SET NAMA = #{nama},HARGA = #{harga},KET = #{ket},STS = #{sts} WHERE id_produk = #{id_produk};
+    </update>  
+    
+    <delete id="delete" parameterType="Kasir">
+        DELETE FROM produk WHERE id_produk = #{id_produk};
+    </delete>  
+    <select id="true" parameterType="int" resultMap="result">
+        SELECT * FROM produk WHERE sts= true;
+    </select>
+   <update id="sts" parameterType="Kasir">
+        UPDATE produk SET STS = #{sts} WHERE id_produk = #{id_produk};
+    </update> 
+</mapper>
+
+
+
+
+

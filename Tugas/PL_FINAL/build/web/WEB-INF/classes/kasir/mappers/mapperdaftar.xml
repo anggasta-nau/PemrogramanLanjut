@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="Daftar">
+    <resultMap id="result" type="Daftar">
+        <result property="id" column="id"/>
+        <result property="id_transaksi" column="id_transaksi"/>
+        <result property="namapel" column="namapel"/>
+        <result property="totalharga" column="totalharga"/>
+       
+    </resultMap>
+    
+    <select id="getAll" resultMap="result">
+        SELECT * FROM daftar_transaksi;
+    </select>
+    
+    <select id="getById" parameterType="int" resultMap="result">
+        SELECT * FROM daftar_transaksi  WHERE id_transaksi = #{id_transaksi};
+    </select>
+        
+    <insert id="insert" parameterType="Daftar">
+        INSERT INTO daftar_transaksi (id_transaksi, namapel, totalharga) VALUES(#{id_transaksi}, #{namapel}, #{totalharga});
+    <selectKey keyProperty="id" resultType="int" order="AFTER">
+        select last_insert_id() as id
+    </selectKey>
+    </insert>
+    <delete id="delete" parameterType="Daftar">
+        DELETE FROM daftar_transaksi WHERE id = #{id};
+    </delete> 
+    
+</mapper>

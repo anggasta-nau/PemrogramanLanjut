@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>DATABASE</title> 
+    </h:head>
+    <style>
+        table {  
+            border-collapse: collapse;  
+            width: 100%;  
+        }  
+        th, td {  
+            text-align: center;  
+            padding: 8px;  
+            font-family: sans-serif;
+        }
+        .btn{
+            border: none;
+            padding: 10px;
+            border-radius: 5px
+        }
+        .btn-primary{
+            background-color: lightsalmon;
+            
+        }
+        .btn-danger{
+            background-color: red;
+            color: white;
+        }
+  
+tr:nth-child(even){background-color:#f2f2f2 }  
+th {  
+background-color: #5EDCFF;  
+color: white;  
+} 
+h1{
+            font-family: sans-serif;
+        }
+    </style>
+    <h:body>
+        <br></br><br></br><center><h1>VIEW DAFTAR TRANSAKSI</h1></center><br></br><br></br>
+        <h:form> 
+            <h:commandButton
+                style="background-color: #5EDCFF;border-radius: 5px; width: 150px; text-align: center;"
+                action="index" 
+                value="Menu Daftar"/>
+            
+           <br></br>
+           <br></br>
+           <br></br>
+            <table>
+                <tr>
+                    <th>
+                        No Transaksi
+                    </th>
+                    <th>
+                        Nama Pelanggan
+                    </th>
+                    <th>
+                        ID Produk
+                    </th>
+                    <th>
+                        Nama Barang
+                    </th>
+                    <th>
+                        Kuantitas
+                    </th>
+                    <th>
+                        Total
+                    </th>
+                    <th>
+                        Bayar
+                    </th>
+                    <th>
+                        Kembalian
+                    </th>
+               
+                </tr>
+            <c:forEach var="item" items="${dataview.list}">
+                <tr>
+                    <td>
+                        <h:outputText value="${item.no_trans}"/>
+                    </td>
+                    <td>
+                        <h:outputText value="${item.nama_pel}"/>
+                    </td>
+                    <td>
+                        <h:outputText value="${item.id_produk}"/>
+                    </td>
+                    <td>
+                        <h:outputText value="${item.barang}"/>
+                    </td>
+                      <td>
+                        <h:outputText value="${item.qty}"/>
+                    </td>
+                    
+                    <td>
+                        <h:outputText value="${item.total}"/>
+                    </td>
+                    <td>
+                        <h:outputText value="${item.bayar}"/>
+                    </td>
+                    <td>
+                        <h:outputText value="${item.kembalian}"/>
+                    </td>
+                </tr>
+            </c:forEach>
+                
+            </table>
+            <h:outputText value="#{transview.d}"/>
+          
+        </h:form>
+    </h:body>
+</html>

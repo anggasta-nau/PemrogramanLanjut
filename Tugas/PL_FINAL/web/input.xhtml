@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+          <style>
+        table {  
+            border-collapse: collapse;  
+            width: 100%;  
+        }  
+        th, td {  
+            text-align: left;   
+            padding: 8px;  
+            font-family: sans-serif;
+        }
+        .btn{
+            border: none;
+            padding: 10px;
+            border-radius: 5px
+        }
+        .btn-primary{
+            background-color: lightsalmon;
+            
+        }
+        .btn-danger{
+            background-color: red;
+            color: white;
+        }
+  
+tr:nth-child(even){background-color:#f2f2f2 }  
+th {  
+background-color: #5EDCFF;  
+color: white;  
+} 
+h1{
+            font-family: sans-serif;
+        }
+    </style>
+    </h:head>
+    <h:body>
+       <h:form>
+                <h:commandButton
+                style="border-radius: 5px; width: 150px; text-align: center;"
+                action="data" 
+                value="List Data"/>
+           <br></br>
+           <br></br>
+           <br></br>
+           <table>
+               <tr>
+                   <td>ID</td>
+                   <td><h:inputText value="#{data.id_produk}"/></td>
+                </tr>
+                <tr>
+                   <td>Nama</td>
+                   <td><h:inputText value="#{data.nama}"/></td>
+                </tr>
+                <tr>
+                   <td>Harga</td>
+                   <td><h:inputText value="#{data.harga}"/></td>
+                </tr>
+                <tr>
+                   <td>Ket</td>
+                   <td><h:inputText value="#{data.ket}"/></td>
+                </tr>
+           </table>
+           <br></br>
+           <br></br>
+           <h:commandButton
+               style="border-radius: 5px;"
+                id="submit-button" 
+                value="Submit"
+                actionListener="#{data.doCreate()}"
+                action="index"/>
+           
+    
+        </h:form>
+    </h:body>
+</html>
+

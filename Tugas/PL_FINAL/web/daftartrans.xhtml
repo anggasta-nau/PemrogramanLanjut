@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+      <h:head>
+        <title>DATABASE</title> 
+    </h:head>
+    <style>
+        table {  
+            border-collapse: collapse;  
+            width: 100%;  
+        }  
+        th, td {  
+            text-align: center;  
+            padding: 8px;  
+            font-family: sans-serif;
+        }
+        .btn{
+            border: none;
+            padding: 10px;
+            border-radius: 5px
+        }
+        .btn-primary{
+            background-color: lightsalmon;
+            
+        }
+        .btn-danger{
+            background-color: red;
+            color: white;
+        }
+        h1{
+            font-family: sans-serif;
+        }
+  
+tr:nth-child(even){background-color:#f2f2f2 }  
+th {  
+background-color: #5EDCFF;  
+color: white;  
+} 
+    </style>
+    <h:body>
+        <br></br><br></br><center><h1>DAFTAR TRANSAKSI</h1></center><br></br><br></br>
+        <h:form> 
+            <h:commandButton
+                style="border-radius: 5px; width: 150px; text-align: center;"
+                action="index" 
+                value="Menu Utama"/>
+           <br></br>
+           <br></br>
+           <br></br>
+            <table>
+                <tr>
+              
+                    <th>
+                        Nomor Transaksi
+                    </th>
+                    <th>
+                        Nama Pelanggan
+                    </th>
+                    <th>
+                        Total
+                    </th>
+<!--                    <th>
+                        Delete
+                    </th>-->
+                  
+                </tr>
+            <c:forEach var="item" items="${transli.list}">
+                <tr>
+                    <td>
+                        <h:outputText value="${item.id_transaksi}"/>
+                    </td>
+                    <td>
+                        <h:outputText value="${item.namapel}"/>
+                    </td>
+                    <td>
+                        <h:outputText value="${item.totalharga}"/>
+                    </td>
+<!--                    <td>
+                        <h:commandButton
+                             style="border-radius: 5px; width: 100px; text-align: center;"
+                             action="#{transli.delete(item.id)}"
+                             actionListener="#{trans.doDelete(item.id_transaksi)}"
+                             value="Delete"
+                             /> 
+                    
+                       
+                    </td>-->
+                    
+                </tr>
+            </c:forEach>
+                
+            </table>
+            <h:outputText value="#{trans.dts}"/>
+            <br></br>
+            <br></br>
+            <br></br>
+              <h:commandButton
+                             style="border-radius: 5px; width: 100px; text-align: center;"
+                             action="view"
+                             value="View"
+                             />
+              
+        </h:form>
+    </h:body>
+</html>

@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>DATABASE</title> 
+    </h:head>
+    <style>
+        h1{
+            font-family: sans-serif;
+        }
+        table {  
+            border-collapse: collapse;  
+            width: 100%;  
+        }  
+        th, td {  
+            text-align: center;  
+            padding: 8px;  
+            font-family: sans-serif;
+        }
+        .btn{
+            border: none;
+            padding: 10px;
+            border-radius: 5px
+        }
+        .btn-primary{
+            background-color: lightsalmon;
+            
+        }
+        .btn-danger{
+            background-color: red;
+            color: white;
+        }
+  
+tr:nth-child(even){background-color:#f2f2f2 }  
+th {  
+background-color: #5EDCFF;  
+color: white;  
+} 
+    </style>
+    <h:body>
+        <br></br><br></br><center><h1>DATABASE</h1></center><br></br><br></br>
+        <h:form> 
+            <h:commandButton
+                style="border-radius: 5px; width: 150px; text-align: center;"
+                action="index" 
+                value="Menu Utama"/>
+           <br></br>
+           <br></br>
+           <br></br>
+            <table>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Nama
+                    </th>
+                    <th>
+                        Harga
+                    </th>
+                    <th>
+                        Keterangan
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Delete
+                    </th>
+               
+                </tr>
+            <c:forEach var="item" items="${db.list}">
+                <tr>
+                    <td>
+                        <h:outputText value="${item.id_produk}"/>
+                    </td>
+                    <td>
+                        <h:outputText value="${item.nama}"/>
+                    </td>
+                    <td>
+                        <h:outputText value="${item.harga}"/>
+                    </td>
+                    <td>
+                        <h:outputText value="${item.ket}"/>
+                    </td>
+           
+                      <td>
+                        <h:outputText value="${item.sts}"/>
+                    </td>
+                    <td>
+                        <h:commandButton
+                             style="background-color: #5EDCFF; width: 100px; text-align: center;"
+                             action="#{data.delete(item.id_produk)}"
+                             value="Delete"
+                             /> 
+                    </td>
+                </tr>
+            </c:forEach>
+                
+            </table>
+            <h:outputText value="#{db.mdl}"/>
+            <br></br>
+            <br></br>
+            <br></br>
+            <p align="right">
+            <h:commandButton
+                style="border-radius: 5px; width: 150px; text-align: center;"
+                value="Input Data Barang"
+                action="input"/> 
+            
+             <h:commandButton
+                style="border-radius: 5px; width: 150px; text-align: center;"
+                action="update" 
+                value="Update"/>
+             
+             <h:commandButton
+                style="border-radius: 5px; width: 150px; text-align: center;"
+                action="updatestatus" 
+                value="Update Status"/> </p>
+        </h:form>
+    </h:body>
+</html>

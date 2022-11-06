@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="Transaksi">
+    <resultMap id="result" type="Transaksi">
+        <result property="id_trans" column="id_trans"/>
+        <result property="no_trans" column="no_trans"/>
+        <result property="nama_pel" column="nama_pel"/>
+        <result property="id_produk" column="id_produk"/>
+        <result property="barang" column="barang"/>
+        <result property="qty" column="qty"/>
+        <result property="total" column="total"/>
+        <result property="bayar" column="bayar"/>
+        <result property="kembalian" column="kembalian"/>
+    </resultMap>
+    
+    <select id="getAll" resultMap="result">
+        SELECT * FROM transaksi;
+    </select>
+    
+    <select id="getById" parameterType="int" resultMap="result">
+        SELECT * FROM TRANSAKSI WHERE no_trans = #{no_trans};
+    </select>
+        
+    <insert id="insert" parameterType="Transaksi">
+        INSERT INTO TRANSAKSI (no_trans, nama_pel, id_produk, barang,qty,total, bayar, kembalian) VALUES(#{no_trans}, #{nama_pel}, #{id_produk},#{barang},#{qty}, #{total}, #{bayar}, #{kembalian});
+    <selectKey keyProperty="id_trans" resultType="int" order="AFTER">
+        SELECT LAST_INSERT_ID() as id_trans
+    </selectKey>
+    
+    </insert>
+    <delete id="delete" parameterType="Transaksi">
+        DELETE FROM transaksi WHERE no_trans = #{no_trans};
+    </delete> 
+</mapper>
